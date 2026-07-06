@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Élégance Boutique</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Inter", "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: #ffffff;
+      color: #111;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    header {
+      height: 78px;
+      padding: 0 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid #eee;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 6px;
+    }
+
+    nav {
+      display: flex;
+      gap: 34px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    nav a.active {
+      border-bottom: 2px solid #111;
+      padding-bottom: 6px;
+    }
+
+    .icons {
+      display: flex;
+      gap: 22px;
+      font-size: 20px;
+    }
+
+    .container {
+      width: 88%;
+      margin: auto;
+    }
+
+    .genre-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 35px;
+    }
+
+    .big-card,
+    .small-card {
+      background: #f5f5f5;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      min-height: 430px;
+    }
+
+    .small-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .small-card {
+      min-height: 206px;
+    }
+
+    .big-card img,
+    .small-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      inset: 0;
+    }
+
+    .card-content {
+      position: relative;
+      z-index: 2;
+      padding: 35px;
+      max-width: 260px;
+    }
+
+    .card-content small {
+      font-size: 11px;
+      text-transform: uppercase;
+      color: #555;
+      font-weight: 700;
+    }
+
+    .card-content h1 {
+      font-size: 40px;
+      line-height: 1.1;
+      margin: 18px 0;
+    }
+
+    .card-content h3 {
+      font-size: 21px;
+      margin: 12px 0;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #111;
+      color: #fff;
+      padding: 12px 22px;
+      border-radius: 7px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-top: 8px;
+    }
+
+    .btn-outline {
+      display: inline-block;
+      border: 1px solid #111;
+      padding: 11px 28px;
+      border-radius: 7px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-top: 30px;
+    }
+
+    section {
+      padding: 55px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .section-title h2 {
+      font-size: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .section-title p {
+      color: #777;
+      margin-top: 8px;
+      font-size: 14px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 22px;
+    }
+
+    .product {
+      border: 1px solid #eee;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+      transition: 0.3s;
+      position: relative;
+    }
+
+    .product:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 45px rgba(0,0,0,0.08);
+    }
+
+    .product-img {
+      height: 215px;
+      background: #f6f6f6;
+      overflow: hidden;
+    }
+
+    .product-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: #fff;
+      border-radius: 20px;
+      padding: 5px 9px;
+      font-size: 10px;
+      font-weight: 800;
+      z-index: 3;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .product-info {
+      padding: 14px;
+      text-align: center;
+    }
+
+    .product-info h3 {
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .price {
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    .banner-slider {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      position: relative;
+    }
+
+    .ad-card {
+      min-height: 190px;
+      background: #f5f5f5;
+      border-radius: 15px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 30px;
+    }
+
+    .ad-card img {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 52%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .ad-text {
+      position: relative;
+      z-index: 2;
+      max-width: 210px;
+    }
+
+    .ad-text small {
+      font-size: 10px;
+      text-transform: uppercase;
+      color: #777;
+      font-weight: 800;
+    }
+
+    .ad-text h3 {
+      font-size: 25px;
+      margin: 10px 0;
+    }
+
+    .dots {
+      text-align: center;
+      margin-top: 18px;
+      letter-spacing: 8px;
+      color: #ccc;
+    }
+
+    .dots span:first-child {
+      color: #111;
+    }
+
+    .triple {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .list-box {
+      border: 1px solid #eee;
+      border-radius: 16px;
+      padding: 28px;
+    }
+
+    .list-box h3 {
+      text-align: center;
+      font-size: 17px;
+      margin-bottom: 25px;
+    }
+
+    .mini-product {
+      display: grid;
+      grid-template-columns: 58px 1fr;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .mini-product img {
+      width: 58px;
+      height: 58px;
+      object-fit: cover;
+      border-radius: 9px;
+      background: #f4f4f4;
+    }
+
+    .mini-product h4 {
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
+
+    .mini-product p {
+      font-size: 12px;
+      color: #555;
+      font-weight: 700;
+    }
+
+    .season-banner {
+      min-height: 230px;
+      border-radius: 18px;
+      background: #f4eadc;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      padding: 45px 70px;
+    }
+
+    .season-banner img {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      height: 100%;
+      width: 48%;
+      object-fit: cover;
+    }
+
+    .season-content {
+      max-width: 520px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .season-content small {
+      text-transform: uppercase;
+      font-size: 11px;
+      font-weight: 800;
+      color: #777;
+    }
+
+    .season-content h2 {
+      font-size: 42px;
+      margin: 12px 0;
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid #eee;
+      border-radius: 15px;
+      padding: 24px;
+      margin-bottom: 38px;
+    }
+
+    .service {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      justify-content: center;
+      border-right: 1px solid #eee;
+    }
+
+    .service:last-child {
+      border-right: none;
+    }
+
+    .service span {
+      font-size: 25px;
+    }
+
+    .service h4 {
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
+
+    .service p {
+      font-size: 12px;
+      color: #777;
+    }
+
+    footer {
+      border-top: 1px solid #eee;
+      padding: 45px 0 25px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr 1.2fr;
+      gap: 28px;
+    }
+
+    footer h3 {
+      font-size: 14px;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+    }
+
+    footer p,
+    footer a {
+      font-size: 13px;
+      color: #666;
+      line-height: 2;
+      display: block;
+    }
+
+    .newsletter {
+      display: flex;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-top: 12px;
+    }
+
+    .newsletter input {
+      flex: 1;
+      border: none;
+      padding: 13px;
+      outline: none;
+    }
+
+    .newsletter button {
+      background: #111;
+      color: #fff;
+      border: none;
+      padding: 0 16px;
+    }
+
+    .copyright {
+      margin-top: 35px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #777;
+    }
+
+    @media(max-width: 1100px) {
+      .products {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .genre-grid,
+      .banner-slider,
+      .triple,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .small-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .services {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .service {
+        border-right: none;
+      }
+    }
+
+    @media(max-width: 650px) {
+      nav {
+        display: none;
+      }
+
+      .container {
+        width: 92%;
+      }
+
+      .small-grid,
+      .products,
+      .services {
+        grid-template-columns: 1fr;
+      }
+
+      .big-card,
+      .small-card {
+        min-height: 330px;
+      }
+
+      .season-banner {
+        padding: 35px;
+      }
+
+      .season-banner img,
+      .ad-card img {
+        opacity: 0.35;
+        width: 100%;
+      }
+
+      .season-content h2 {
+        font-size: 31px;
+      }
+
+      .copyright {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">ÉLÉGANCE</div>
+
+  <nav>
+    <a href="#" class="active">Accueil</a>
+    <a href="#">Femme</a>
+    <a href="#">Homme</a>
+    <a href="#">Enfant</a>
+    <a href="#">Beauté</a>
+    <a href="#">Accessoires</a>
+    <a href="#">Promotions</a>
+  </nav>
+
+  <div class="icons">
+    <span>⌕</span>
+    <span>♡</span>
+    <span>🛒</span>
+  </div>
+</header>
+
+<main class="container">
+
+  <section>
+    <div class="genre-grid">
+      <div class="big-card">
+        <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1000&q=80" alt="">
+        <div class="card-content">
+          <small>Femme</small>
+          <h1>Nouvelle Collection</h1>
+          <a href="#" class="btn">Découvrir</a>
+        </div>
+      </div>
+
+      <div class="small-grid">
+        <div class="small-card">
+          <img src="https://images.unsplash.com/photo-1516257984-b1b4d707412e?auto=format&fit=crop&w=800&q=80" alt="">
+          <div class="card-content">
+            <h3>Homme</h3>
+            <small>Voir plus →</small>
+          </div>
+        </div>
+
+        <div class="small-card">
+          <img src="https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&w=800&q=80" alt="">
+          <div class="card-content">
+            <h3>Enfants</h3>
+            <small>Voir plus →</small>
+          </div>
+        </div>
+
+        <div class="small-card">
+          <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=800&q=80" alt="">
+          <div class="card-content">
+            <h3>Cosmétiques</h3>
+            <small>Voir plus →</small>
+          </div>
+        </div>
+
+        <div class="small-card">
+          <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=800&q=80" alt="">
+          <div class="card-content">
+            <h3>Accessoires</h3>
+            <small>Voir plus →</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">
+      <h2>Nouveaux produits</h2>
+      <p>Découvrez nos toutes dernières nouveautés</p>
+    </div>
+
+    <div class="products">
+      <div class="product">
+        <span class="badge">NEW</span>
+        <div class="product-img"><img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=600&q=80"></div>
+        <div class="product-info"><h3>Robe fluide élégante</h3><p class="price">25 000 FCFA</p></div>
+      </div>
+
+      <div class="product">
+        <span class="badge">NEW</span>
+        <div class="product-img"><img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80"></div>
+        <div class="product-info"><h3>Blazer oversize</h3><p class="price">30 000 FCFA</p></div>
+      </div>
+
+      <div class="product">
+        <span class="badge">NEW</span>
+        <div class="product-img"><img src="https://images.unsplash.com/photo-1506629905607-d0b6f5f1b62d?auto=format&fit=crop&w=600&q=80"></div>
+        <div class="product-info"><h3>Sac bandoulière chic</h3><p class="price">22 000 FCFA</p></div>
+      </div>
+
+      <div class="product">
+        <span class="badge">NEW</span>
+        <div class="product-img"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80"></div>
+        <div class="product-info"><h3>Montre minimaliste</h3><p class="price">15 000 FCFA</p></div>
+      </div>
+
+      <div class="product">
+        <span class="badge">NEW</span>
+        <div class="product-img"><img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=600&q=80"></div>
+        <div class="product-info"><h3>Baskets blanches</h3><p class="price">20 000 FCFA</p></div>
+      </div>
+
+      <div class="product">
+        <span class="badge">NEW</span>
+        <div class="product-img"><img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=600&q=80"></div>
+        <div class="product-info"><h3>Crème hydratante</h3><p class="price">9 000 FCFA</p></div>
+      </div>
+
+      <div class="product">
+        <span class="badge">NEW</span>
+        <div class="product-img"><img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=600&q=80"></div>
+        <div class="product-info"><h3>Top satin</h3><p class="price">12 000 FCFA</p></div>
+      </div>
+
+      <div class="product">
+        <span class="badge">NEW</span>
+        <div class="product-img"><img src="https://images.unsplash.com/photo-1511556532299-8f662fc26c06?auto=format&fit=crop&w=600&q=80"></div>
+        <div class="product-info"><h3>Lunettes tendance</h3><p class="price">8 000 FCFA</p></div>
+      </div>
+
+      <div class="product">
+        <span class="badge">NEW</span>
+        <div class="product-img"><img src="https://images.unsplash.com/photo-1595341888016-a392ef81b7de?auto=format&fit=crop&w=600&q=80"></div>
+        <div class="product-info"><h3>Sac à main luxe</h3><p class="price">35 000 FCFA</p></div>
+      </div>
+
+      <div class="product">
+        <span class="badge">NEW</span>
+        <div class="product-img"><img src="https://images.unsplash.com/photo-1520975682031-a8c3f58a50a8?auto=format&fit=crop&w=600&q=80"></div>
+        <div class="product-info"><h3>Tenue casual</h3><p class="price">27 000 FCFA</p></div>
+      </div>
+
+      <div class="product">
+        <span class="badge">NEW</span>
+        <div class="product-img"><img src="https://images.unsplash.com/photo-1523381294911-8d3cead13475?auto=format&fit=crop&w=600&q=80"></div>
+        <div class="product-info"><h3>Chemise premium</h3><p class="price">18 000 FCFA</p></div>
+      </div>
+
+      <div class="product">
+        <span class="badge">NEW</span>
+        <div class="product-img"><img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=600&q=80"></div>
+        <div class="product-info"><h3>Sneakers urbaines</h3><p class="price">24 000 FCFA</p></div>
+      </div>
+    </div>
+
+    <div class="center">
+      <a href="#" class="btn-outline">Voir plus de nouveautés</a>
+    </div>
+  </section>
+
+  <section>
+    <div class="banner-slider">
+      <div class="ad-card">
+        <div class="ad-text">
+          <small>Offre spéciale</small>
+          <h3>Jusqu’à -30%</h3>
+          <a href="#" class="btn">Profiter</a>
+        </div>
+        <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=700&q=80">
+      </div>
+
+      <div class="ad-card">
+        <div class="ad-text">
+          <small>Beauté & soin</small>
+          <h3>Prenez soin de vous</h3>
+          <a href="#" class="btn">Découvrir</a>
+        </div>
+        <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=700&q=80">
+      </div>
+
+      <div class="ad-card">
+        <div class="ad-text">
+          <small>Collection homme</small>
+          <h3>Nouveautés été</h3>
+          <a href="#" class="btn">Découvrir</a>
+        </div>
+        <img src="https://images.unsplash.com/photo-1516257984-b1b4d707412e?auto=format&fit=crop&w=700&q=80">
+      </div>
+    </div>
+
+    <div class="dots">
+      <span>●</span><span>●</span><span>●</span><span>●</span>
+    </div>
+  </section>
+
+  <section>
+    <div class="triple">
+      <div class="list-box">
+        <h3>HOT TREND 🔥</h3>
+
+        <div class="mini-product">
+          <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=300&q=80">
+          <div><h4>Robe plissée élégante</h4><p>28 000 FCFA</p></div>
+        </div>
+
+        <div class="mini-product">
+          <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=300&q=80">
+          <div><h4>Veste en jean oversize</h4><p>24 000 FCFA</p></div>
+        </div>
+
+        <div class="mini-product">
+          <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=300&q=80">
+          <div><h4>Sandales à talons</h4><p>15 000 FCFA</p></div>
+        </div>
+
+        <div class="mini-product">
+          <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=300&q=80">
+          <div><h4>Sac mini tendance</h4><p>18 000 FCFA</p></div>
+        </div>
+
+        <div class="center"><a href="#" class="btn-outline">Voir tout</a></div>
+      </div>
+
+      <div class="list-box">
+        <h3>BEST SELLER ⭐</h3>
+
+        <div class="mini-product">
+          <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=300&q=80">
+          <div><h4>Parfum Soft Bloom</h4><p>20 000 FCFA</p></div>
+        </div>
+
+        <div class="mini-product">
+          <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=300&q=80">
+          <div><h4>Montre luxe dorée</h4><p>18 000 FCFA</p></div>
+        </div>
+
+        <div class="mini-product">
+          <img src="https://images.unsplash.com/photo-1506629905607-d0b6f5f1b62d?auto=format&fit=crop&w=300&q=80">
+          <div><h4>Sac bandoulière chic</h4><p>22 000 FCFA</p></div>
+        </div>
+
+        <div class="mini-product">
+          <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=300&q=80">
+          <div><h4>Baskets urbaines</h4><p>22 000 FCFA</p></div>
+        </div>
+
+        <div class="center"><a href="#" class="btn-outline">Voir tout</a></div>
+      </div>
+
+      <div class="list-box">
+        <h3>FEATURED 💎</h3>
+
+        <div class="mini-product">
+          <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=300&q=80">
+          <div><h4>Sérum éclat</h4><p>12 000 FCFA</p></div>
+        </div>
+
+        <div class="mini-product">
+          <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=300&q=80">
+          <div><h4>Palette maquillage</h4><p>15 000 FCFA</p></div>
+        </div>
+
+        <div class="mini-product">
+          <img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=300&q=80">
+          <div><h4>Crème solaire SPF 50</h4><p>8 000 FCFA</p></div>
+        </div>
+
+        <div class="mini-product">
+          <img src="https://images.unsplash.com/photo-1511556532299-8f662fc26c06?auto=format&fit=crop&w=300&q=80">
+          <div><h4>Lunettes premium</h4><p>11 000 FCFA</p></div>
+        </div>
+
+        <div class="center"><a href="#" class="btn-outline">Voir tout</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="season-banner">
+      <div class="season-content">
+        <small>Collection Printemps / Été</small>
+        <h2>Jusqu’à -40% de remise</h2>
+        <p>Des pièces fraîches, légères et élégantes pour la saison.</p>
+        <a href="#" class="btn">Découvrir la collection</a>
+      </div>
+
+      <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=900&q=80">
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">
+      <h2>Les incontournables de la saison</h2>
+    </div>
+
+    <div class="products">
+      <div class="product">
+        <div class="product-img"><img src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=600&q=80"></div>
+        <div class="product-info"><h3>Robe d’été fleurie</h3><p class="price">26 000 FCFA</p></div>
+      </div>
+
+      <div class="product">
+        <div class="product-img"><img src="https://images.unsplash.com/photo-1523381294911-8d3cead13475?auto=format&fit=crop&w=600&q=80"></div>
+        <div class="product-info"><h3>Ensemble lin décontracté</h3><p class="price">30 000 FCFA</p></div>
+      </div>
+
+      <div class="product">
+        <div class="product-img"><img src="https://images.unsplash.com/photo-1529958030586-3aae4ca485ff?auto=format&fit=crop&w=600&q=80"></div>
+        <div class="product-info"><h3>Chapeau de paille</h3><p class="price">12 000 FCFA</p></div>
+      </div>
+
+      <div class="product">
+        <div class="product-img"><img src="https://images.unsplash.com/photo-1511556532299-8f662fc26c06?auto=format&fit=crop&w=600&q=80"></div>
+        <div class="product-info"><h3>Lunettes soleil rétro</h3><p class="price">9 000 FCFA</p></div>
+      </div>
+
+      <div class="product">
+        <div class="product-img"><img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=600&q=80"></div>
+        <div class="product-info"><h3>Sandales cuir</h3><p class="price">16 000 FCFA</p></div>
+      </div>
+
+      <div class="product">
+        <div class="product-img"><img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=600&q=80"></div>
+        <div class="product-info"><h3>Sac cabas tressé</h3><p class="price">18 000 FCFA</p></div>
+      </div>
+    </div>
+
+    <div class="center">
+      <a href="#" class="btn-outline">Voir plus de produits</a>
+    </div>
+  </section>
+
+  <section>
+    <div class="services">
+      <div class="service">
+        <span>🚚</span>
+        <div>
+          <h4>Livraison rapide</h4>
+          <p>Partout en Côte d’Ivoire</p>
+        </div>
+      </div>
+
+      <div class="service">
+        <span>🔒</span>
+        <div>
+          <h4>Paiement sécurisé</h4>
+          <p>100% sécurisé</p>
+        </div>
+      </div>
+
+      <div class="service">
+        <span>↩️</span>
+        <div>
+          <h4>Garantie satisfait</h4>
+          <p>Retour facile</p>
+        </div>
+      </div>
+
+      <div class="service">
+        <span>☎️</span>
+        <div>
+          <h4>Support 24/7</h4>
+          <p>Assistance dédiée</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>Newsletter</h3>
+        <p>Recevez nos offres exclusives en avant-première.</p>
+        <div class="newsletter">
+          <input type="email" placeholder="Votre email">
+          <button>➤</button>
+        </div>
+      </div>
+
+      <div>
+        <h3>ÉLÉGANCE</h3>
+        <p>Votre destination mode, beauté et accessoires préférée.</p>
+      </div>
+
+      <div>
+        <h3>Liens rapides</h3>
+        <a href="#">Accueil</a>
+        <a href="#">Boutique</a>
+        <a href="#">Promotions</a>
+        <a href="#">Contact</a>
+      </div>
+
+      <div>
+        <h3>Informations</h3>
+        <a href="#">À propos de nous</a>
+        <a href="#">Livraison</a>
+        <a href="#">Retours & échanges</a>
+        <a href="#">FAQ</a>
+      </div>
+
+      <div>
+        <h3>Mon compte</h3>
+        <a href="#">Mon compte</a>
+        <a href="#">Mes commandes</a>
+        <a href="#">Mes favoris</a>
+        <a href="#">Déconnexion</a>
+      </div>
+    </div>
+
+    <div class="copyright">
+      <p>© 2026 Élégance. Tous droits réservés.</p>
+      <p>Conditions d’utilisation · Politique de confidentialité</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
